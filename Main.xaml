@@ -1,4 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="2154,1627.33333333333" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities" xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" this:Main.in_InvoiceFilePath="C:\Users\libor\.nuget\packages\invoice-dispatcherfiberpreg\1.0.20\lib\net45\Data\Output\Processed\RE04204563_InvoiceDE3860999.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upaf="clr-namespace:UiPath.Persistence.Activities.FormTask;assembly=UiPath.Persistence.Activities" xmlns:upat="clr-namespace:UiPath.Persistence.Activities.Tasks;assembly=UiPath.Persistence.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_InvoiceFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_InvoiceDataPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_FolderLocationData" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>2154,1772</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="30">
       <x:String>System.Activities</x:String>
@@ -63,7 +73,7 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="376,1562.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="376,1707.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="upaf:FormTaskData" Name="TaskObject" />
       <Variable x:TypeArguments="x:String" Name="testParameter" />
@@ -82,14 +92,41 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_5">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[InvoicePath]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">\invoices\invoice1.pdf</InArgument>
-      </Assign.Value>
-    </Assign>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Upload Storage workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Upload Storage.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_InvoiceFilePath">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_InvoiceFilePath" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_StoragePath">
+          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="InvoicePath" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[InvoicePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">\invoices\invoice1.pdf</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
     <Assign sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[doc1]</OutArgument>
@@ -98,17 +135,11 @@
         <InArgument x:TypeArguments="x:String">["\invoices\Uctenka_10_12_2020.jpeg"]</InArgument>
       </Assign.Value>
     </Assign>
-    <upaf:CreateFormTask TimeoutMs="{x:Null}" BucketFolderPath="Default" BucketName="TestBucket" DisplayName="Create Form Task" FormLayout="%[{&quot;label&quot;:&quot;Text Field&quot;,&quot;hideLabel&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;textField&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;defaultValue&quot;:&quot;APPROVE INVOICE BELOW&quot;,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true},{&quot;columns&quot;:[{&quot;components&quot;:[{&quot;label&quot;:&quot;HTML&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;embed src={{ data.invoice_storage }} width=\&quot;600px\&quot; height=\&quot;500px\&quot;&gt;&lt;/embed&gt;&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;html&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;calculateServer&quot;:false,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;hideOnChildrenHidden&quot;:false,&quot;refreshOn&quot;:&quot;invoice_storage&quot;}],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;},{&quot;components&quot;:[{&quot;label&quot;:&quot;Radio&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inline&quot;:false,&quot;hideLabel&quot;:true,&quot;tableView&quot;:false,&quot;values&quot;:[{&quot;label&quot;:&quot;Approve&quot;,&quot;value&quot;:&quot;approve&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Dismiss&quot;,&quot;value&quot;:&quot;dismiss&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;key&quot;:&quot;radio1&quot;,&quot;type&quot;:&quot;radio&quot;,&quot;input&quot;:true,&quot;hideOnChildrenHidden&quot;:false,&quot;calculateServer&quot;:false},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;tableView&quot;:false,&quot;calculateServer&quot;:false,&quot;hideOnChildrenHidden&quot;:false}],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;}],&quot;tableView&quot;:false,&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;label&quot;:&quot;Columns&quot;,&quot;calculateServer&quot;:false},{&quot;label&quot;:&quot;HTML&quot;,&quot;tag&quot;:&quot;div&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;a href={{data.invoice_storage}} target=\&quot;_blank\&quot;&gt;Download document&lt;/a&gt;&lt;hr&gt;&quot;,&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;html1&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;calculateServer&quot;:false},{&quot;label&quot;:&quot;doc1_storage&quot;,&quot;hidden&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;doc1_storage&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true},{&quot;label&quot;:&quot;invoice_storage&quot;,&quot;hidden&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;invoice_storage&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true}]" sap:VirtualizedContainerService.HintSize="334,382.666666666667" sap2010:WorkflowViewState.IdRef="CreateFormTask_3" TaskCatalog="[&quot;Invoices&quot;]" TaskOutput="[TaskObject]" TaskPriority="[TaskPriority.High]" TaskTitle="Invoice Approval">
+    <upaf:CreateFormTask TimeoutMs="{x:Null}" BucketFolderPath="Shared" BucketName="ActionsBucket" DisplayName="Create Form Task" FormLayout="%[{&quot;label&quot;:&quot;Text Field&quot;,&quot;hideLabel&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;textField&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;defaultValue&quot;:&quot;APPROVE INVOICE BELOW&quot;,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true},{&quot;columns&quot;:[{&quot;components&quot;:[{&quot;label&quot;:&quot;HTML&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;embed src={{ data.invoice_storage }} width=\&quot;600px\&quot; height=\&quot;500px\&quot;&gt;&lt;/embed&gt;&quot;,&quot;refreshOnChange&quot;:false,&quot;key&quot;:&quot;html&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;calculateServer&quot;:false,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;hideOnChildrenHidden&quot;:false,&quot;refreshOn&quot;:&quot;invoice_storage&quot;}],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;},{&quot;components&quot;:[{&quot;label&quot;:&quot;Radio&quot;,&quot;optionsLabelPosition&quot;:&quot;right&quot;,&quot;inline&quot;:false,&quot;hideLabel&quot;:true,&quot;tableView&quot;:false,&quot;values&quot;:[{&quot;label&quot;:&quot;Approve&quot;,&quot;value&quot;:&quot;approve&quot;,&quot;shortcut&quot;:&quot;&quot;},{&quot;label&quot;:&quot;Dismiss&quot;,&quot;value&quot;:&quot;dismiss&quot;,&quot;shortcut&quot;:&quot;&quot;}],&quot;key&quot;:&quot;radio1&quot;,&quot;type&quot;:&quot;radio&quot;,&quot;input&quot;:true,&quot;hideOnChildrenHidden&quot;:false,&quot;calculateServer&quot;:false},{&quot;type&quot;:&quot;button&quot;,&quot;label&quot;:&quot;Submit&quot;,&quot;key&quot;:&quot;submit&quot;,&quot;disableOnInvalid&quot;:true,&quot;input&quot;:true,&quot;tableView&quot;:false,&quot;calculateServer&quot;:false,&quot;hideOnChildrenHidden&quot;:false}],&quot;width&quot;:6,&quot;offset&quot;:0,&quot;push&quot;:0,&quot;pull&quot;:0,&quot;size&quot;:&quot;md&quot;}],&quot;tableView&quot;:false,&quot;key&quot;:&quot;columns&quot;,&quot;type&quot;:&quot;columns&quot;,&quot;input&quot;:false,&quot;label&quot;:&quot;Columns&quot;,&quot;calculateServer&quot;:false},{&quot;label&quot;:&quot;HTML&quot;,&quot;tag&quot;:&quot;div&quot;,&quot;attrs&quot;:[{&quot;attr&quot;:&quot;&quot;,&quot;value&quot;:&quot;&quot;}],&quot;content&quot;:&quot;&lt;a href={{data.invoice_storage}} target=\&quot;_blank\&quot;&gt;Download document&lt;/a&gt;&lt;hr&gt;&quot;,&quot;refreshOnChange&quot;:true,&quot;key&quot;:&quot;html1&quot;,&quot;type&quot;:&quot;htmlelement&quot;,&quot;input&quot;:false,&quot;tableView&quot;:false,&quot;calculateServer&quot;:false},{&quot;label&quot;:&quot;doc1_storage&quot;,&quot;hidden&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;doc1_storage&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true},{&quot;label&quot;:&quot;invoice_storage&quot;,&quot;hidden&quot;:true,&quot;disabled&quot;:true,&quot;tableView&quot;:true,&quot;key&quot;:&quot;invoice_storage&quot;,&quot;type&quot;:&quot;textfield&quot;,&quot;input&quot;:true,&quot;calculateServer&quot;:false,&quot;spellcheck&quot;:true}]" sap:VirtualizedContainerService.HintSize="334,382.666666666667" sap2010:WorkflowViewState.IdRef="CreateFormTask_3" TaskCatalog="[&quot;Invoices&quot;]" TaskOutput="[TaskObject]" TaskPriority="[TaskPriority.High]" TaskTitle="Invoice Approval">
       <upaf:CreateFormTask.FormData>
-        <OutArgument x:TypeArguments="x:String" x:Key="radio1">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="RadioValue" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="doc1_storage">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="doc1" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="invoice_storage">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="InvoicePath" />
-        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="radio1">[RadioValue]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="doc1_storage">[doc1]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="invoice_storage">[InvoicePath]</InArgument>
       </upaf:CreateFormTask.FormData>
     </upaf:CreateFormTask>
     <Assign DisplayName="Assign User" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_2">

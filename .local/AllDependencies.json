@@ -4487,11 +4487,11 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "ActionCentreTest",
-      "projectName": "ActionCentreTest",
-      "projectPath": "C:\\Users\\libor\\Dropbox\\RPA\\UI path\\Projects\\ActionCentreTest-backupNew\\.local",
+      "projectUniqueName": "Invoice-CreateTask_Fiberpreg",
+      "projectName": "Invoice-CreateTask_Fiberpreg",
+      "projectPath": "C:\\Users\\libor\\Dropbox\\LK_docs\\Valuetools\\Zákazníci\\Fiberpreg\\InvoiceProcess\\Invoice-CreateTaskNewFiberpreg\\.local",
       "packagesPath": "C:\\Users\\libor\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\libor\\Dropbox\\RPA\\UI path\\Projects\\ActionCentreTest-backupNew\\.local"
+      "outputPath": "C:\\Users\\libor\\Dropbox\\LK_docs\\Valuetools\\Zákazníci\\Fiberpreg\\InvoiceProcess\\Invoice-CreateTaskNewFiberpreg\\.local"
     },
     "frameworks": {
       "net461": {
